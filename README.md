@@ -17,8 +17,8 @@ Install the required dependencies:
 poetry install
 ```
 
-Test run the functions:
+Test run the example web `scraper` function:
 
 ```shell
-poetry run modal run functions.py
+poetry run modal run scrape.py --url https://example.com/
 ```
