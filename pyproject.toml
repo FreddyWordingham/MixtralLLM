@@ -7,6 +7,7 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+modal = "^0.56.4506"
 
 [build-system]
 requires = ["poetry-core"]
