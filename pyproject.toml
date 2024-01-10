@@ -1,0 +1,13 @@
+[tool.poetry]
+name = "mixtralllm"
+version = "0.0.0"
+description = "Example of how to deploy the Mixtral LLM serverlessly using Modal"
+authors = ["Freddy Wordingham <freddy@digilab.co.uk>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
