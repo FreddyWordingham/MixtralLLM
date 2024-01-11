@@ -1,5 +1,3 @@
-import re
-
 import modal
 
 
@@ -28,12 +26,24 @@ async def get_links(cur_url: str):
         links = await page.eval_on_selector_all("a[href]", "elements => elements.map(element => element.href)")
         await browser.close()
 
-    print("Links", links)
     return links
 
 
+def run(urls: str):
+    url_list = urls.split(",")
+    for links in get_links.map(url_list):  # Async parallel map.
+        for link in links:
+            print(link)
+
+
+# Automatically run this function once a day.
+@stub.function(secret=modal.Secret.from_name("SCRAPE_URLS"), schedule=modal.Period(days=1))
+def scheduled_scrape():
+    import os
+    urls = os.environ["SCRAPE_URLS"]
+    run(urls)
+
+
 @stub.local_entrypoint()
-def main(url: str):
-    print("URL", url)
-    links = get_links.remote(url)
-    print(links)
+def main(urls: str):
+    run(urls)
